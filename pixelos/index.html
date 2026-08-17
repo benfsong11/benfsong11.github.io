@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixelos</title>
+<meta name="description" content="A fast, focused pixel art editor for macOS.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f6f6f7;
+    --card: #ffffff;
+    --text: #1c1c1e;
+    --muted: #6b6b70;
+    --line: rgba(0,0,0,.10);
+    --accent: #2f6fed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141416;
+      --card: #1d1d20;
+      --text: #f2f2f4;
+      --muted: #9a9aa2;
+      --line: rgba(255,255,255,.12);
+      --accent: #4a8cff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+  main { width: 100%; max-width: 560px; }
+  header { text-align: center; margin-bottom: 32px; }
+  .icon { width: 128px; height: 128px; border-radius: 28px; }
+  h1 { font-size: 34px; letter-spacing: -.02em; margin: 18px 0 6px; }
+  .tagline { color: var(--muted); margin: 0; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 18px;
+  }
+  /* The screenshot carries its own window shadow, so the card gets out of
+     its way rather than framing it twice. */
+  .contact { color: var(--accent); text-decoration: none; }
+  .contact:hover { text-decoration: underline; }
+  .shot { padding: 0; background: none; border: none; overflow: hidden; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .download {
+    display: block;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 14px 20px;
+    border-radius: 10px;
+  }
+  .download:hover { filter: brightness(1.06); }
+  .meta {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .note {
+    border-left: 3px solid var(--accent);
+    padding: 2px 0 2px 14px;
+    margin-top: 20px;
+  }
+  .note p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 12px; }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  code {
+    font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    word-break: break-all;
+    color: var(--muted);
+  }
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 28px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img class="icon" src="icon.png" alt="Pixelos icon">
+    <h1>Pixelos</h1>
+    <p class="tagline">A fast, focused pixel art editor for macOS.</p>
+  </header>
+
+  <div class="card">
+    <a class="download" href="Pixelos-1.0.dmg" download>Download 1.0 &nbsp;·&nbsp; 2.1 MB</a>
+    <div class="meta">
+      <span>macOS 14 or later</span>
+      <span>Apple silicon &amp; Intel</span>
+      <span>Updated 2026-08-18</span>
+    </div>
+    
+    <div class="note">
+        <strong>Installing over an older copy</strong>
+        <p>Open the app once from wherever it lands and it offers to move itself
+        into <em>Applications</em>. Say yes and the Pixelos already installed
+        there goes to the Trash, along with the copy you just downloaded — one
+        Pixelos, in the right place. Nothing is deleted outright, and nothing
+        happens until you agree.</p>
+      </div>
+  </div>
+
+  <div class="card shot">
+      <img src="screenshot.png" alt="Pixelos with a 16×16 character open at 3200%, showing the tool strip, canvas and inspector">
+    </div>
+
+  <div class="card" id="animation">
+    <h2>Pixelos Animation</h2>
+    <p style="margin:0 0 14px;color:var(--muted)">Drawing, layers, palettes and PNG
+      export are free, and stay free. Animation is the paid part: frames and the
+      timeline, onion skin, sprite sheets and GIF export. One purchase, no
+      subscription, and the licence works on your Macs — activate it in
+      <em>Pixelos ▸ License…</em> with the key from your receipt.</p>
+    <p style="margin:0;color:var(--muted);font-size:14px">Licences go on sale shortly — <a class="contact" href="mailto:benfsong11@naver.com?subject=Pixelos%20Animation">email me</a> to be told when.</p>
+  </div>
+
+  <div class="card">
+    <h2>What it does</h2>
+    <ul>
+      <li>Pencil, eraser, fill, eyedropper, line, rectangle, move and rectangular selection — no anti-aliasing anywhere</li>
+      <li>Layers with opacity, visibility, reordering and merge down</li>
+      <li>Animation: a timeline of frames, per-frame timing, looping playback and onion skin</li>
+      <li>Export a frame, a sprite sheet with optional JSON metadata, or a looping GIF</li>
+      <li>Native documents, autosave, multiple windows and a keyboard-first workflow</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Verify the download</h2>
+    <p style="margin:0 0 8px;color:var(--muted);font-size:14px">SHA-256</p>
+    <code>5eb4db4b56eb8c5bb8fd360e254dd2e60d4c2676725fd7225a69ebfbfe425993</code>
+  </div>
+
+  <div class="card">
+    <h2>Questions</h2>
+    <p style="margin:0;color:var(--muted)">Bugs, requests, anything else —
+      <a class="contact" href="mailto:benfsong11@naver.com?subject=Pixelos%201.0">benfsong11@naver.com</a>
+    </p>
+  </div>
+
+  <footer>Built for macOS. Signed with a Developer ID certificate.</footer>
+</main>
+</body>
+</html>

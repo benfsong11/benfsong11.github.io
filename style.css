@@ -1,0 +1,65 @@
+/* One stylesheet for the whole site, so the Pixelos page and this one are
+   plainly the same place. Colours follow the system's light/dark setting. */
+:root {
+  color-scheme: light dark;
+  --bg: #f6f6f7;
+  --card: #ffffff;
+  --text: #1c1c1e;
+  --muted: #6b6b70;
+  --line: rgba(0,0,0,.10);
+  --accent: #2f6fed;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141416;
+    --card: #1d1d20;
+    --text: #f2f2f4;
+    --muted: #9a9aa2;
+    --line: rgba(255,255,255,.12);
+    --accent: #4a8cff;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 64px 20px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+main { width: 100%; max-width: 560px; }
+header { margin-bottom: 32px; }
+h1 { font-size: 34px; letter-spacing: -.02em; margin: 0 0 6px; }
+.tagline { color: var(--muted); margin: 0; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 12px; }
+p { margin: 0; }
+.link { color: var(--accent); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+/* A project row: icon, name and a line about it, the whole thing clickable. */
+.project {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px;
+  margin: -10px;
+  border-radius: 10px;
+}
+.project:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.project-icon { width: 54px; height: 54px; border-radius: 12px; flex: none; }
+.project-text { display: flex; flex-direction: column; gap: 2px; }
+.project-text strong { font-size: 17px; }
+.project-text span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.project-go { margin-left: auto; color: var(--muted); flex: none; }
+footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 28px; }
