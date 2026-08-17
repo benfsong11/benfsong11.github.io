@@ -49,6 +49,9 @@
   }
   /* The screenshot carries its own window shadow, so the card gets out of
      its way rather than framing it twice. */
+  .up { margin: 0 0 24px; font-size: 14px; }
+  .up a { color: var(--muted); text-decoration: none; }
+  .up a:hover { color: var(--accent); }
   .contact { color: var(--accent); text-decoration: none; }
   .contact:hover { text-decoration: underline; }
   .shot { padding: 0; background: none; border: none; overflow: hidden; }
@@ -92,6 +95,8 @@
 </head>
 <body>
 <main>
+  <p class="up"><a href="../">← Ben Song</a></p>
+
   <header>
     <img class="icon" src="icon.png" alt="Pixelos icon">
     <h1>Pixelos</h1>
