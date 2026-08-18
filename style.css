@@ -1,65 +1,222 @@
-/* One stylesheet for the whole site, so the Pixelos page and this one are
-   plainly the same place. Colours follow the system's light/dark setting. */
+/* Pixelos, and the site it lives on.
+   Hard edges, 2px borders and offset shadows — the vocabulary of a sprite
+   drawn on a grid. Nothing here is rounded, and nothing is anti-aliased that
+   should not be. */
+
+/* Press Start 2P for display, Silkscreen for labels. Both OFL, both loaded
+   with a system fallback that keeps the layout standing if the request fails. */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
+
 :root {
   color-scheme: light dark;
-  --bg: #f6f6f7;
-  --card: #ffffff;
-  --text: #1c1c1e;
-  --muted: #6b6b70;
-  --line: rgba(0,0,0,.10);
+  --bg: #f2f0ea;
+  --panel: #ffffff;
+  --ink: #17151f;
+  --muted: #6a6678;
+  --line: #17151f;
+  --shadow: rgba(23, 21, 31, .22);
   --accent: #2f6fed;
+  --accent-ink: #ffffff;
+  --red: #e04a55;
+  --yellow: #f2b134;
+  --green: #3fbf7f;
+  --purple: #8b5cf6;
+  --checker: rgba(23, 21, 31, .05);
+
+  --display: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --label: "Silkscreen", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #141416;
-    --card: #1d1d20;
-    --text: #f2f2f4;
-    --muted: #9a9aa2;
-    --line: rgba(255,255,255,.12);
-    --accent: #4a8cff;
+    --bg: #14131c;
+    --panel: #1d1b27;
+    --ink: #f2f1f6;
+    --muted: #9d99ad;
+    --line: #35323f;
+    --shadow: rgba(0, 0, 0, .5);
+    --accent: #5b9bff;
+    --accent-ink: #0d0c14;
+    --checker: rgba(255, 255, 255, .04);
   }
 }
+
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
-  padding: 64px 20px;
+  padding: 0 20px 72px;
   background: var(--bg);
-  color: var(--text);
-  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  display: flex;
-  justify-content: center;
+  color: var(--ink);
+  font: 16px/1.65 var(--body);
+  /* A faint checkerboard, the same one the canvas uses behind transparency. */
+  background-image:
+    repeating-conic-gradient(var(--checker) 0% 25%, transparent 0% 50%);
+  background-size: 16px 16px;
 }
-main { width: 100%; max-width: 560px; }
-header { margin-bottom: 32px; }
-h1 { font-size: 34px; letter-spacing: -.02em; margin: 0 0 6px; }
-.tagline { color: var(--muted); margin: 0; }
+
+main { width: 100%; max-width: 620px; margin: 0 auto; }
+
+img { image-rendering: pixelated; }
+
+/* ── Type ─────────────────────────────────────────────────────────────── */
+
+h1 {
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1.35;
+  letter-spacing: -.5px;
+  margin: 0 0 14px;
+}
+
+h2 {
+  font-family: var(--label);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+h3 {
+  font-family: var(--label);
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+
+.eyebrow {
+  font-family: var(--label);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+a { color: var(--accent); }
+a.plain { color: inherit; text-decoration: none; }
+
+/* ── Blocks ───────────────────────────────────────────────────────────── */
+
 .card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 22px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  box-shadow: 5px 5px 0 var(--shadow);
+  padding: 24px;
+  margin-bottom: 26px;
+}
+
+.stack > * + * { margin-top: 14px; }
+
+/* A row of coloured pixels — the site's only ornament, and the app's logo
+   taken apart. */
+.pixels {
+  display: flex;
+  gap: 4px;
   margin-bottom: 18px;
 }
-h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 12px; }
-p { margin: 0; }
-.link { color: var(--accent); text-decoration: none; }
-.link:hover { text-decoration: underline; }
+.pixels i { width: 12px; height: 12px; display: block; }
+.pixels i:nth-child(1) { background: var(--red); }
+.pixels i:nth-child(2) { background: var(--yellow); }
+.pixels i:nth-child(3) { background: var(--green); }
+.pixels i:nth-child(4) { background: var(--accent); }
+.pixels i:nth-child(5) { background: var(--purple); }
 
-/* A project row: icon, name and a line about it, the whole thing clickable. */
-.project {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+header { padding: 72px 0 36px; }
+header.center { text-align: center; }
+header.center .pixels { justify-content: center; }
+.appicon { width: 96px; height: 96px; display: block; margin: 0 auto 22px; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+
+.btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--label);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .5px;
   text-decoration: none;
-  color: inherit;
-  padding: 10px;
-  margin: -10px;
-  border-radius: 10px;
+  padding: 16px 20px;
+  border: 2px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--shadow);
 }
-.project:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
-.project-icon { width: 54px; height: 54px; border-radius: 12px; flex: none; }
-.project-text { display: flex; flex-direction: column; gap: 2px; }
-.project-text strong { font-size: 17px; }
-.project-text span { color: var(--muted); font-size: 14px; line-height: 1.5; }
-.project-go { margin-left: auto; color: var(--muted); flex: none; }
-footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 28px; }
+.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--shadow); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--line); }
+.btn + .btn { margin-top: 12px; }
+
+.meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 16px;
+  font-family: var(--label);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ── Feature list ─────────────────────────────────────────────────────── */
+
+.features { display: grid; gap: 18px; }
+.feature { display: flex; gap: 14px; align-items: flex-start; }
+.feature .chip {
+  width: 14px; height: 14px; flex: none; margin-top: 5px;
+  border: 2px solid var(--line);
+}
+.feature:nth-child(5n+1) .chip { background: var(--red); }
+.feature:nth-child(5n+2) .chip { background: var(--yellow); }
+.feature:nth-child(5n+3) .chip { background: var(--green); }
+.feature:nth-child(5n+4) .chip { background: var(--accent); }
+.feature:nth-child(5n+5) .chip { background: var(--purple); }
+.feature p { color: var(--muted); font-size: 15px; }
+
+/* ── Pricing ──────────────────────────────────────────────────────────── */
+
+.tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 560px) { .tiers { grid-template-columns: 1fr; } }
+.tier { border: 2px solid var(--line); padding: 18px; background: var(--panel); }
+.tier.paid { box-shadow: inset 0 0 0 2px var(--accent); }
+.price { font-family: var(--display); font-size: 22px; margin: 6px 0 12px; }
+.tier ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+.tier li { margin-bottom: 5px; }
+
+/* ── Screenshot ───────────────────────────────────────────────────────── */
+
+.shot { padding: 0; border: none; box-shadow: none; background: none; }
+.shot img { display: block; width: 100%; height: auto; image-rendering: auto; }
+
+/* ── Notes, project rows, footer ──────────────────────────────────────── */
+
+.note { border-left: 4px solid var(--accent); padding: 4px 0 4px 16px; margin-top: 20px; }
+.note strong { font-family: var(--label); font-size: 15px; }
+.note p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+.project { display: flex; gap: 16px; align-items: center; text-decoration: none; color: inherit; }
+.project img { width: 56px; height: 56px; flex: none; }
+.project .go { margin-left: auto; font-family: var(--label); color: var(--muted); }
+.project:hover .go { color: var(--accent); }
+
+.up { font-family: var(--label); font-size: 13px; padding-top: 26px; }
+.up a { color: var(--muted); text-decoration: none; }
+.up a:hover { color: var(--accent); }
+
+footer {
+  text-align: center;
+  font-family: var(--label);
+  font-size: 13px;
+  color: var(--muted);
+  padding-top: 10px;
+}

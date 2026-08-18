@@ -12,26 +12,24 @@
   <p class="up"><a href="../">← Ben Song</a></p>
 
   <header class="center">
-    <img class="appicon" src="icon.png" alt="Pixelos icon">
+    {{ICON}}
     <div class="pixels"><i></i><i></i><i></i><i></i><i></i></div>
     <h1>Pixelos</h1>
     <p class="muted">A fast, focused pixel art editor for macOS.</p>
   </header>
 
   <div class="card">
-    <a class="btn primary" href="Pixelos-1.0.dmg" download>Download 1.0</a>
+    <a class="btn primary" href="{{DMG_NAME}}" download>Download {{VERSION}}</a>
     <div class="meta">
-      <span>2.2 MB</span>
+      <span>{{SIZE}}</span>
       <span>macOS 14+</span>
       <span>Apple silicon &amp; Intel</span>
-      <span>2026-08-18</span>
+      <span>{{DATE}}</span>
     </div>
-    
+    {{FIRST_OPEN}}
   </div>
 
-  <div class="card shot">
-      <img src="screenshot.png" alt="Pixelos with a 16×16 character open at 3200%, showing the tool strip, canvas and inspector">
-    </div>
+  {{SHOT}}
 
   <div class="card">
     <h2>What it does</h2>
@@ -80,7 +78,7 @@
       </div>
       <div class="tier paid">
         <h3>Animation</h3>
-        <p class="price">$3</p>
+        <p class="price">{{PRICE_PLAIN}}</p>
         <ul>
           <li>Frames and timeline</li>
           <li>Onion skin</li>
@@ -96,7 +94,7 @@
         licence — a licence is for making and exporting animation, never for
         opening your own files.</p>
     </div>
-    <a class="btn primary" href="https://bensongdev.gumroad.com/l/pixelos" style="margin-top:20px">Buy a licence · $3</a>
+    {{BUY}}
   </div>
 
   <div class="card">
@@ -111,7 +109,7 @@
   <div class="card">
     <h2>Questions</h2>
     <p class="muted">Bugs, requests, anything else —
-      <a href="mailto:bensongsupport@gmail.com?subject=Pixelos%201.0">bensongsupport@gmail.com</a></p>
+      <a href="mailto:{{CONTACT_EMAIL}}?subject=Pixelos%20{{VERSION}}">{{CONTACT_EMAIL}}</a></p>
   </div>
 
   <footer>Built for macOS · Signed and notarized</footer>
