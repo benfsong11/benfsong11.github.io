@@ -34,11 +34,14 @@
     --panel: #1d1b27;
     --ink: #f2f1f6;
     --muted: #9d99ad;
-    --line: #35323f;
-    --shadow: rgba(0, 0, 0, .5);
+    /* The border and its offset shadow are the whole look, so they have to
+       carry in the dark too — a near-background line and an invisible shadow
+       left the cards floating. */
+    --line: #4f4b62;
+    --shadow: rgba(0, 0, 0, .65);
     --accent: #5b9bff;
     --accent-ink: #0d0c14;
-    --checker: rgba(255, 255, 255, .04);
+    --checker: rgba(255, 255, 255, .03);
   }
 }
 
